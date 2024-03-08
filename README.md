@@ -4,7 +4,7 @@
 # Using
 ## Requirements
 * Docker
-  * only tested with Docker for windows & gitbash terminals
+  * only tested with Docker for windows & git bash terminals
 
 ## Instructions
 1. Checkout locally
