@@ -11,3 +11,6 @@ shell:
 
 install:
 	${DOCKER_PREFIX} ${DOCKER_IMAGE} npm install
+
+lint:
+	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/prettier . --check
