@@ -14,9 +14,13 @@ shell:
 install:
 	${DOCKER_PREFIX_NO_LOADER} ${DOCKER_IMAGE} npm install
 
-lint:
+lint--prettier:
 	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/prettier . --check
-	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/eslint . --fix-dry-run
+
+lint--eslint:
+	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/eslint . --fix-dry-run --ignore-pattern '/generated-types/' --rule '@typescript-eslint/no-explicit-any: off'
+
+lint: lint--prettier lint--eslint
 
 lint-fix:
 	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/prettier . --write
