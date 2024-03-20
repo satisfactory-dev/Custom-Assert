@@ -19,6 +19,7 @@ lint--prettier:
 
 lint--eslint:
 	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/eslint . --fix-dry-run --ignore-pattern '/generated-types/'
+	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/eslint . --ignore-pattern '/generated-types/'
 
 lint: lint--prettier lint--eslint
 
