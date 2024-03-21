@@ -25,3 +25,4 @@ lint: lint--prettier lint--eslint
 
 lint-fix:
 	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/prettier . --write
+	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/eslint --cache './*.ts' --fix
