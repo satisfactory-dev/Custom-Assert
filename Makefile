@@ -6,7 +6,7 @@ DOCKER_PREFIX_NO_LOADER = @docker run --rm -it \
 	-v ${HOME}/.npm/:/.npm/ \
 	-w /app/
 
-DOCKER_PREFIX = ${DOCKER_PREFIX_NO_LOADER} -e NODE_OPTIONS='--no-warnings=ExperimentalWarning --loader ts-node/esm'
+DOCKER_PREFIX = ${DOCKER_PREFIX_NO_LOADER} -e NODE_OPTIONS='--enable-source-maps --no-warnings=ExperimentalWarning --loader ts-node/esm'
 
 shell:
 	${DOCKER_PREFIX} --entrypoint sh ${DOCKER_IMAGE}
