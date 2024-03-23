@@ -1,28 +1,34 @@
-DOCKER_IMAGE ?= node:21-alpine
+DOCKER_COMPOSER_PREFIX = @USER=$(shell id -u):$(shell id -g) docker compose
 
-DOCKER_PREFIX_NO_LOADER = @docker run --rm -it \
-	-u $(shell id -u):$(shell id -g) \
-	-v $(shell pwd)/:/app \
-	-v ${HOME}/.npm/:/.npm/ \
-	-w /app/
+up:
+	${DOCKER_COMPOSER_PREFIX} up -d
 
-DOCKER_PREFIX = ${DOCKER_PREFIX_NO_LOADER} -e NODE_OPTIONS='--enable-source-maps --no-warnings=ExperimentalWarning --loader ts-node/esm'
+down:
+	${DOCKER_COMPOSER_PREFIX} down
+
+logs:
+	${DOCKER_COMPOSER_PREFIX} logs -f
 
 shell:
-	${DOCKER_PREFIX} --entrypoint sh ${DOCKER_IMAGE}
+	${DOCKER_COMPOSER_PREFIX} run ts-node sh
 
 install:
-	${DOCKER_PREFIX_NO_LOADER} ${DOCKER_IMAGE} npm install
+	${DOCKER_COMPOSER_PREFIX} run ts-node npm install
 
 lint--prettier:
-	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/prettier . --check
+	@echo 'running prettier'
+	${DOCKER_COMPOSER_PREFIX} run ts-node ./node_modules/.bin/prettier . --check
 
 lint--eslint:
-	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/eslint --cache './*.ts' --fix-dry-run
-	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/eslint --cache './*.ts'
+	@echo 'checking eslint for fixable issues'
+	${DOCKER_COMPOSER_PREFIX} run ts-node ./node_modules/.bin/eslint --cache './*.ts' --fix-dry-run
+	@echo 'checking eslint for all issues'
+	${DOCKER_COMPOSER_PREFIX} run ts-node ./node_modules/.bin/eslint --cache './*.ts'
 
 lint: lint--prettier lint--eslint
 
 lint-fix:
-	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/prettier . --write
-	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/eslint --cache './*.ts' --fix
+	@echo 'fixing prettier issues'
+	${DOCKER_COMPOSER_PREFIX} run ts-node ./node_modules/.bin/prettier . --write
+	@echo 'fixing eslint issues'
+	${DOCKER_COMPOSER_PREFIX} run ts-node ./node_modules/.bin/eslint --cache './*.ts' --fix

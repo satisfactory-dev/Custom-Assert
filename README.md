@@ -23,7 +23,7 @@
 ## Instructions
 
 1. Checkout locally
-2. Run `make install`
+2. Run `make up install`
 
 ### IDE Integration
 
