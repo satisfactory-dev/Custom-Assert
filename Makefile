@@ -10,25 +10,25 @@ logs:
 	${DOCKER_COMPOSER_PREFIX} logs -f
 
 shell:
-	${DOCKER_COMPOSER_PREFIX} run ts-node sh
+	${DOCKER_COMPOSER_PREFIX} exec ts-node sh
 
 install:
-	${DOCKER_COMPOSER_PREFIX} run ts-node npm install
+	${DOCKER_COMPOSER_PREFIX} exec ts-node npm install
 
 lint--prettier:
 	@echo 'running prettier'
-	${DOCKER_COMPOSER_PREFIX} run ts-node ./node_modules/.bin/prettier . --check
+	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/prettier . --check
 
 lint--eslint:
 	@echo 'checking eslint for fixable issues'
-	${DOCKER_COMPOSER_PREFIX} run ts-node ./node_modules/.bin/eslint --cache './*.ts' --fix-dry-run
+	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/eslint --cache './*.ts' --fix-dry-run
 	@echo 'checking eslint for all issues'
-	${DOCKER_COMPOSER_PREFIX} run ts-node ./node_modules/.bin/eslint --cache './*.ts'
+	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/eslint --cache './*.ts'
 
 lint: lint--prettier lint--eslint
 
 lint-fix:
 	@echo 'fixing prettier issues'
-	${DOCKER_COMPOSER_PREFIX} run ts-node ./node_modules/.bin/prettier . --write
+	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/prettier . --write
 	@echo 'fixing eslint issues'
-	${DOCKER_COMPOSER_PREFIX} run ts-node ./node_modules/.bin/eslint --cache './*.ts' --fix
+	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/eslint --cache './*.ts' --fix
