@@ -4,3 +4,5 @@ signpostmarv
 # eslint.config.mjs
 tseslint
 
+# filenames, because reasons
+prettierrc
