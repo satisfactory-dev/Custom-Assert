@@ -34,9 +34,9 @@ lint-fix:
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/eslint --cache './*.ts' --fix
 
 .PHONY: tests
-tests:
+tests: build-lib
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/jasmine --config=./jasmine.json
 
 .PHONY: coverage
-coverage:
+coverage: build-lib
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/c8 ./node_modules/.bin/jasmine --config=./jasmine.json
