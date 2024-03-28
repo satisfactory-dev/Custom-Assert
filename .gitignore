@@ -2,3 +2,4 @@
 /.eslintcache
 /*.js
 /*.js.map
+/coverage/

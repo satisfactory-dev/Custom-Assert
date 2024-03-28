@@ -1,0 +1,9 @@
+{
+	"reporter": ["text", "html"],
+	"report-dir": "./coverage",
+	"all": true,
+	"exclude": [
+		"coverage",
+		"tests"
+	]
+}
