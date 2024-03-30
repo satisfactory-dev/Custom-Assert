@@ -19,7 +19,7 @@ lint--prettier:
 	@echo 'running prettier'
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/prettier . --check
 
-lint-lib--eslint:
+lint--eslint:
 	@echo 'checking eslint for fixable issues'
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/eslint --cache './*.ts' --fix-dry-run
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/eslint --cache './*.ts' tests --fix-dry-run
@@ -27,7 +27,7 @@ lint-lib--eslint:
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/eslint --cache './*.ts'
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/eslint --cache './*.ts' tests
 
-lint: lint--prettier lint--eslint
+lint: lint--prettier lint--tsc lint--eslint
 
 lint-fix:
 	@echo 'fixing prettier issues'
