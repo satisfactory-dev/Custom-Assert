@@ -1,6 +1,8 @@
 /node_modules/
 /tests/**/*.js
 /tests/**/*.map
+/assert/**/*.js
+/assert/**/*.map
 /.eslintcache
 /*.js
 /*.js.map
