@@ -1,0 +1,6 @@
+{
+	"reporter": ["lcovonly"],
+	"report-dir": "./coverage",
+	"all": true,
+	"exclude": ["coverage", "tests"]
+}
