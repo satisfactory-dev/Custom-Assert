@@ -15,6 +15,10 @@ shell:
 install:
 	${DOCKER_COMPOSER_PREFIX} exec node npm install
 
+build:
+	@echo 'building from ./tsconfig.app.json'
+	${DOCKER_COMPOSER_PREFIX} exec node ./node_modules/.bin/tsc --project ./tsconfig.app.json
+
 lint--prettier:
 	@echo 'running prettier'
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/prettier . --check
