@@ -38,9 +38,9 @@ lint-fix:
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/eslint --cache './*.ts' assert tests --fix
 
 .PHONY: tests
-tests: build-lib
+tests: build
 	${DOCKER_COMPOSER_PREFIX} exec ts-node npm test
 
 .PHONY: coverage
-coverage: build-lib
+coverage: build
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/c8 npm test
