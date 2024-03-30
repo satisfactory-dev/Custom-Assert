@@ -5,5 +5,8 @@ signpostmarv
 tseslint
 nonoctal
 
+# github workflows
+coverallsapp
+
 # filenames, because reasons
 prettierrc
