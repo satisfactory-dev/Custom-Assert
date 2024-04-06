@@ -57,11 +57,11 @@ tests--only-unstaged: build
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/ts-node ./tests--only-these.ts "$(shell git diff HEAD --name-only)"
 
 tests--only-unstaged: build
-	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/ts-node ./tests--only-these.ts "$(shell git diff HEAD --name-only)"
+	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/ts-node ./tests--only-these.ts '$(shell git diff HEAD --name-only)'
 
 .PHONY: coverage
 coverage: build
 	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/c8 npm test
 
 coverage--only-unstaged: build
-	${DOCKER_COMPOSER_PREFIX} exec ts-node ./node_modules/.bin/c8 ./node_modules/.bin/ts-node ./tests--only-these.ts "$(shell git diff HEAD --name-only)"
+	${DOCKER_PREFIX} ${DOCKER_IMAGE} ./node_modules/.bin/c8 ./node_modules/.bin/ts-node ./tests--only-these.ts '$(shell git diff HEAD --name-only)'
