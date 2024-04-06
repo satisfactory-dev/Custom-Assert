@@ -6,3 +6,7 @@ import {
 } from 'node:fs/promises';
 
 const __dirname = import.meta.dirname;
+
+for (const remove of await glob(`${__dirname}/{coverage/tmp/*.json}`)) {
+	await unlink(remove);
+}
