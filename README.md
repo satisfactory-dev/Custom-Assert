@@ -22,7 +22,7 @@
 
 -   Docker
     -   recommend vscode devcontainer support
-	-   phpstorm's devcontainer support works but doesn't seem as capable
+    -   phpstorm's devcontainer support works but doesn't seem as capable
 
 ## Instructions
 
