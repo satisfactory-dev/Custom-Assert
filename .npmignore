@@ -1,7 +1,9 @@
-/tests/
-/**/*.js
-/**/*.map
-/*.ts
+/**/*.ts
+/**/*.js.map
+!/**/*.d.ts
+/tests/**/*.*
+/*.js
+/*.d.ts
 /coverage/
 /.c8rc*.json
 /.devcontainer/
@@ -16,5 +18,3 @@
 /.prettierignore
 /.prettierrc
 /tsconfig*.json
-!/tsconfig.json
-!/tsconfig.app.json

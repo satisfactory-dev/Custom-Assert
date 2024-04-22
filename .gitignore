@@ -6,5 +6,7 @@
 /.eslintcache
 /*.js
 /*.js.map
+/*.d.ts
 /coverage/
 /.idea/
+/**/*.d.ts

@@ -4,5 +4,8 @@
 		"./*.ts",
 		"./tests/**/*.ts",
 		"./assert/**/*.ts"
-	]
+	],
+	"compilerOptions": {
+		"declaration": true
+	}
 }
