@@ -29,7 +29,11 @@
 ## Instructions
 
 1. Checkout locally
-2. Run `make up install`
+1. Load in devcontainer-supporting IDE
+    - devcontainer setup should automatically run `make install`
+    - `NODE_OPTIONS` env var may require opening a fresh terminal if you
+      receieve an error along the lines of
+      `TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".ts"`
 
 ### IDE Integration
 
@@ -40,8 +44,6 @@
 ## In a separate project
 
 1. run `npm install --save @satisfactory-clips-archive/docs.json.ts`
-1. refer to [package.json](package.json) to install packages that won't have
-   been installed due to circumventing the `npm install` approach.
 1. refer to [discover-types.ts](discover-types.ts) for how to generate the
    types & data
 
