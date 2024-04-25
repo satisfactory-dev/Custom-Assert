@@ -73,4 +73,4 @@
 
 # License
 
-[Multi-licensed, see LICENSE.md](LICENSE.md)
+[see LICENSE.md](LICENSE.md)
