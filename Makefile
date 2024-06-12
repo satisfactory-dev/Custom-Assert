@@ -15,7 +15,7 @@ lint--eslint:
 	@echo 'checking eslint for all issues'
 	@./node_modules/.bin/eslint --cache './*.ts' assert tests
 
-lint: lint--prettier lint--tsc lint--eslint
+lint: lint--prettier build lint--eslint
 
 lint-fix:
 	@echo 'fixing prettier issues'
