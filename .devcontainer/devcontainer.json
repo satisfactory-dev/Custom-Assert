@@ -1,5 +1,5 @@
 {
-	"name": "Docs.json.ts",
+	"name": "Custom Assert",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},

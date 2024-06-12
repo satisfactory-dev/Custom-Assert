@@ -9,7 +9,6 @@
 /.devcontainer/
 /.github/
 /.idea/
-/Docs.json.ts.dic
 /Makefile
 /.editorconfig
 /.eslintignore
