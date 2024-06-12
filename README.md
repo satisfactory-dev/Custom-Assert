@@ -28,14 +28,9 @@
 Taken from project tests
 
 ```ts
-import {
-	describe,
-	it,
-} from 'node:test';
+import {describe, it} from 'node:test';
 import assert from 'node:assert/strict';
-import {
-	array_has_size,
-} from '@satisfactory-clips-archive/custom-assert';
+import {array_has_size} from '@satisfactory-clips-archive/custom-assert';
 
 void describe('array_has_size', () => {
 	void it('does not throw', () => {

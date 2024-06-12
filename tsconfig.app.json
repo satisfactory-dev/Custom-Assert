@@ -1,10 +1,6 @@
 {
 	"extends": "./tsconfig",
-	"include": [
-		"./*.ts",
-		"./tests/**/*.ts",
-		"./assert/**/*.ts"
-	],
+	"include": ["./*.ts", "./tests/**/*.ts", "./assert/**/*.ts"],
 	"compilerOptions": {
 		"declaration": true
 	}
