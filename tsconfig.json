@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"noEmitHelpers": false,
 		"sourceMap": true,
 		"newLine": "lf",
 		"esModuleInterop": true,
