@@ -12,7 +12,6 @@
     "test": "ts-node ./tests.ts"
   },
   "devDependencies": {
-    "@eslint/js": "^8.57.0",
     "@types/eslint": "^8.56.6",
     "@types/node": "^20.14.8",
     "c8": "^10.1.2",
