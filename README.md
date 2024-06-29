@@ -1,5 +1,5 @@
-[![Coverage Status](https://coveralls.io/repos/github/Satisfactory-Clips-Archive/Custom-Assert/badge.svg?branch=main)](https://coveralls.io/github/Satisfactory-Clips-Archive/Custom-Assert?branch=main)
-[![Workflow Status](https://github.com/Satisfactory-Clips-Archive/Custom-Assert/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/Satisfactory-Clips-Archive/Custom-Assert/actions/workflows/node.js.yml?query=branch%3Amain)
+[![Coverage Status](https://coveralls.io/repos/github/satisfactory-dev/Custom-Assert/badge.svg?branch=main)](https://coveralls.io/github/satisfactory-dev/Custom-Assert?branch=main)
+[![Workflow Status](https://github.com/satisfactory-dev/Custom-Assert/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/satisfactory-dev/Custom-Assert/actions/workflows/node.js.yml?query=branch%3Amain)
 
 # Development
 
@@ -20,7 +20,7 @@
 
 # Usage
 
-1. run `npm install --save @satisfactory-clips-archive/custom-assert`
+1. run `npm install --save @satisfactory-dev/custom-assert`
 1. integrate with testing solution
 
 ## Example
@@ -30,7 +30,7 @@ Taken from project tests
 ```ts
 import {describe, it} from 'node:test';
 import assert from 'node:assert/strict';
-import {array_has_size} from '@satisfactory-clips-archive/custom-assert';
+import {array_has_size} from '@satisfactory-dev/custom-assert';
 
 void describe('array_has_size', () => {
 	void it('does not throw', () => {

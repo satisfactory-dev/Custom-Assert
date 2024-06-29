@@ -1,13 +1,13 @@
 {
   "type": "module",
-  "name": "@satisfactory-clips-archive/custom-assert",
-  "description": "Custom Assert functions used by @satisfactory-clips-archive/docs.json.ts",
+  "name": "@satisfactory-dev/custom-assert",
+  "description": "Custom Assert functions used by @satisfactory-dev/docs.json.ts",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Satisfactory-Clips-Archive/Custom-Assert.git"
+    "url": "git+https://github.com/satisfactory-dev/Custom-Assert.git"
   },
-  "funding": "https://github.com/Satisfactory-Clips-Archive/Custom-Assert?sponsor=1",
+  "funding": "https://github.com/satisfactory-dev/Custom-Assert?sponsor=1",
   "scripts": {
     "test": "ts-node ./tests.ts"
   },
