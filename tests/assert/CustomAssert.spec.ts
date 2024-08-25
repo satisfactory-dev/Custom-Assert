@@ -56,7 +56,7 @@ void describe('rejects_partial_match', () => {
 		await assert.doesNotReject(
 			rejects_partial_match(
 				new Promise((yup, nope) => {
-					nope({
+					nope(Object.assign(new Error(), {
 						foo: 1,
 						bar: 2,
 						baz: {
@@ -65,7 +65,7 @@ void describe('rejects_partial_match', () => {
 								foo: 4,
 							},
 						},
-					});
+					}));
 				}),
 				{
 					bar: 2,
@@ -80,7 +80,7 @@ void describe('rejects_partial_match', () => {
 		await assert.rejects(
 			rejects_partial_match(
 				new Promise((yup, nope) => {
-					nope({
+					nope(Object.assign(new Error(), {
 						foo: 1,
 						bar: 2,
 						baz: {
@@ -89,7 +89,7 @@ void describe('rejects_partial_match', () => {
 								foo: 4,
 							},
 						},
-					});
+					}));
 				}),
 				{
 					foo: 2,
