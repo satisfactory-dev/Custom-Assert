@@ -18,12 +18,6 @@ lint--eslint:
 
 lint: lint--prettier build lint--eslint
 
-lint-fix:
-	@echo 'fixing prettier issues'
-	@./node_modules/.bin/prettier . --write
-	@echo 'fixing eslint issues'
-	@./node_modules/.bin/eslint --cache './*.ts' assert tests --fix
-
 .PHONY: tests
 tests: build
 	@npm test
