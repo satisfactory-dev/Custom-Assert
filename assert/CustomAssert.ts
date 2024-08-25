@@ -5,7 +5,7 @@ import {
 } from 'typescript';
 
 function value_is_non_array_object(
-	maybe: unknown
+	maybe: unknown,
 ): maybe is {[key: string]: unknown} {
 	return (
 		'object' === typeof maybe
@@ -17,7 +17,7 @@ function value_is_non_array_object(
 export function array_has_size(
 	maybe:unknown[]|NodeArray<Node>,
 	size:number,
-	message?:string|Error
+	message?:string|Error,
 ): asserts maybe is ((unknown[]) & {length: typeof size}) {
 	assert.strictEqual(maybe.length, size, message);
 }
@@ -27,14 +27,14 @@ export function is_instanceof<T>(
 	of: {
 		[Symbol.hasInstance](instance:unknown): boolean;
 	},
-	message?:string|Error
+	message?:string|Error,
 ): asserts maybe is T & typeof of {
 	assert.strictEqual(maybe instanceof of, true, message);
 }
 
 export function not_undefined<T = unknown>(
 	maybe:T|undefined,
-	message?:string|Error
+	message?:string|Error,
 ) : asserts maybe is Exclude<typeof maybe, undefined> {
 	assert.strictEqual(undefined !== maybe, true, message);
 }
@@ -42,7 +42,7 @@ export function not_undefined<T = unknown>(
 export function object_has_property(
 	maybe: unknown,
 	property:string,
-	message?:string|Error
+	message?:string|Error,
 ): asserts maybe is (
 	& {[key: string]: unknown}
 	& {[key in typeof property]: unknown}
@@ -52,14 +52,14 @@ export function object_has_property(
 	assert.strictEqual(
 		property in (maybe as {[key: string]: unknown}),
 		true,
-		message
+		message,
 	);
 }
 
 function resolve_partial(
 	actual:{[key: string]: unknown},
 	expecting:{[key: string]: unknown},
-	message?:string|Error
+	message?:string|Error,
 ): {[key: string]: unknown} {
 	const partial_match:{[key: string]: unknown} = {};
 
@@ -74,7 +74,7 @@ function resolve_partial(
 
 			partial_match[property] = resolve_partial(
 				actual_value,
-				expecting_value
+				expecting_value,
 			);
 		} else {
 			partial_match[property] = actual_value;
@@ -87,7 +87,7 @@ function resolve_partial(
 export async function rejects_partial_match(
 	maybe: Promise<unknown>,
 	partial_error: {[key: string]: unknown},
-	message?:string|Error
+	message?:string|Error,
 ) : Promise<void> {
 	let failure:unknown = undefined;
 
@@ -96,13 +96,13 @@ export async function rejects_partial_match(
 	assert.strictEqual(
 		value_is_non_array_object(failure),
 		true,
-		message
+		message,
 	);
 
 	const partial_match:{[key: string]: unknown} = resolve_partial(
 		failure as {[key: string]: unknown},
 		partial_error,
-		message
+		message,
 	);
 
 	assert.deepStrictEqual(partial_match, partial_error, message);

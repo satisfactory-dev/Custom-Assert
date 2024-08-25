@@ -72,8 +72,8 @@ void describe('rejects_partial_match', () => {
 					baz: {
 						foo: 3,
 					},
-				}
-			)
+				},
+			),
 		);
 	});
 	void it('does throw', async() => {
@@ -93,8 +93,8 @@ void describe('rejects_partial_match', () => {
 				}),
 				{
 					foo: 2,
-				}
-			)
+				},
+			),
 		);
 	});
 });
