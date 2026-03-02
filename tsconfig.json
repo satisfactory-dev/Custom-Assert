@@ -1,5 +1,8 @@
 {
 	"compilerOptions": {
+		"allowImportingTsExtensions": true,
+		"erasableSyntaxOnly": true,
+		"noEmit": true,
 		"noEmitHelpers": true,
 		"sourceMap": true,
 		"newLine": "lf",

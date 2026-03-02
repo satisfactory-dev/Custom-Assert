@@ -9,7 +9,7 @@ import {
 	not_undefined,
 	object_has_property,
 	rejects_partial_match,
-} from '../../assert/CustomAssert';
+} from '../../assert/CustomAssert.ts';
 
 void describe('array_has_size', () => {
 	void it('does not throw', () => {

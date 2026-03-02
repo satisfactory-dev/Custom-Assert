@@ -19,15 +19,9 @@ lint--eslint:
 lint: lint--prettier build lint--eslint
 
 .PHONY: tests
-tests: build
-	@npm test
-
-tests--only-unstaged: build
-	@./node_modules/.bin/ts-node ./tests--only-these.ts '$(shell git diff HEAD --name-only)'
+tests:
+	@node --test "**/*.spec.ts"
 
 .PHONY: coverage
 coverage: build
-	@./node_modules/.bin/c8 npm test
-
-coverage--only-unstaged: build
-	@./node_modules/.bin/c8 ./node_modules/.bin/ts-node ./tests--only-these.ts '$(shell git diff HEAD --name-only)'
+	@./node_modules/.bin/c8 node --test "**/*.spec.ts"
