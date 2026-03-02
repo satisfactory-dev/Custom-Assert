@@ -20,8 +20,8 @@ lint: lint--prettier build lint--eslint
 
 .PHONY: tests
 tests:
-	@node --test "**/*.spec.ts"
+	@node --test
 
 .PHONY: coverage
 coverage: build
-	@node --experimental-test-coverage --test "**/*.spec.ts" --test-reporter=lcov --test-reporter-destination=coverage/lcov.info
+	@node --experimental-test-coverage --test --test-reporter=lcov --test-reporter-destination=coverage/lcov.info
