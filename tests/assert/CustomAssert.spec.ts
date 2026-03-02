@@ -76,7 +76,7 @@ void describe('rejects_partial_match', () => {
 			),
 		);
 	});
-	void it('does throw', async() => {
+	void it('does throw', async () => {
 		await assert.rejects(
 			rejects_partial_match(
 				new Promise((yup, nope) => {
