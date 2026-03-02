@@ -24,4 +24,4 @@ tests:
 
 .PHONY: coverage
 coverage: build
-	@./node_modules/.bin/c8 node --test "**/*.spec.ts"
+	@node --experimental-test-coverage --test "**/*.spec.ts" --test-reporter=lcov --test-reporter-destination=coverage/lcov.info
