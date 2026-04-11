@@ -1,16 +1,16 @@
 install:
-	@NODE_OPTIONS='' npm install
+	@npm install
 
 build:
 	@echo 'building from ./tsconfig.app.json'
-	@NODE_OPTIONS='' ./node_modules/.bin/tsc --project ./tsconfig.app.json
+	@./node_modules/.bin/tsc --project ./tsconfig.app.json
 
 lint--prettier:
 	@echo 'running prettier'
 	@./node_modules/.bin/prettier . --check
 
 lint--eslint:
-	@NODE_OPTIONS='' ./node_modules/.bin/tsc --project ./tsconfig.eslint.json
+	@./node_modules/.bin/tsc --project ./tsconfig.eslint.json
 	@echo 'checking eslint for all issues with config'
 	@./node_modules/.bin/eslint --config eslint.config.js.mjs --cache './**/*.mjs'
 	@echo 'checking eslint for all issues'
