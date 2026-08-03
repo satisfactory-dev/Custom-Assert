@@ -2,7 +2,7 @@ import assert from 'assert';
 import type {
 	Node,
 	NodeArray,
-} from 'typescript';
+} from '@typescript/typescript6';
 
 function value_is_non_array_object(
 	maybe: unknown,
@@ -14,12 +14,29 @@ function value_is_non_array_object(
 	);
 }
 
+function maybe_Error(
+	maybe?: string|Error,
+): (
+	| undefined
+	| Error
+) {
+	if ('string' === typeof maybe) {
+		return new Error(maybe);
+	}
+
+	return maybe;
+}
+
 export function array_has_size(
 	maybe: unknown[]|NodeArray<Node>,
 	size: number,
 	message?: string|Error,
 ): asserts maybe is ((unknown[]) & {length: typeof size}) {
-	assert.strictEqual(maybe.length, size, message);
+	assert.strictEqual(
+		maybe.length,
+		size,
+		maybe_Error(message),
+	);
 }
 
 export function is_instanceof<T>(
@@ -29,14 +46,22 @@ export function is_instanceof<T>(
 	},
 	message?: string|Error,
 ): asserts maybe is T & typeof of {
-	assert.strictEqual(maybe instanceof of, true, message);
+	assert.strictEqual(
+		maybe instanceof of,
+		true,
+		maybe_Error(message),
+	);
 }
 
 export function not_undefined<T = unknown>(
 	maybe: T|undefined,
 	message?: string|Error,
 ): asserts maybe is Exclude<typeof maybe, undefined> {
-	assert.strictEqual(undefined !== maybe, true, message);
+	assert.strictEqual(
+		undefined !== maybe,
+		true,
+		maybe_Error(message),
+	);
 }
 
 export function object_has_property(
@@ -47,12 +72,20 @@ export function object_has_property(
 	& {[key: string]: unknown}
 	& {[key in typeof property]: unknown}
 ) {
-	assert.strictEqual(typeof maybe, 'object', message);
-	assert.strictEqual(maybe instanceof Array, false, message);
+	assert.strictEqual(
+		typeof maybe,
+		'object',
+		maybe_Error(message),
+	);
+	assert.strictEqual(
+		maybe instanceof Array,
+		false,
+		maybe_Error(message),
+	);
 	assert.strictEqual(
 		property in (maybe as {[key: string]: unknown}),
 		true,
-		message,
+		maybe_Error(message),
 	);
 }
 
@@ -97,7 +130,7 @@ export async function rejects_partial_match(
 	assert.strictEqual(
 		value_is_non_array_object(failure),
 		true,
-		message,
+		maybe_Error(message),
 	);
 
 	const partial_match: {[key: string]: unknown} = resolve_partial(
@@ -106,5 +139,9 @@ export async function rejects_partial_match(
 		message,
 	);
 
-	assert.deepStrictEqual(partial_match, partial_error, message);
+	assert.deepStrictEqual(
+		partial_match,
+		partial_error,
+		maybe_Error(message),
+	);
 }
