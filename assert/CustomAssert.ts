@@ -1,8 +1,18 @@
+import type {
+	AssertMessageFunction,
+} from 'assert';
 import assert from 'assert';
+
 import type {
 	Node,
 	NodeArray,
 } from '@typescript/typescript6';
+
+export type AssertMessage = (
+	| string
+	| Error
+	| AssertMessageFunction
+);
 
 function value_is_non_array_object(
 	maybe: unknown,
@@ -14,14 +24,18 @@ function value_is_non_array_object(
 	);
 }
 
-function maybe_Error(
-	maybe?: string|Error,
+function maybe_Message(
+	maybe?: (
+		| string
+		| Error
+		| AssertMessageFunction
+	),
 ): (
 	| undefined
-	| Error
+	| Exclude<AssertMessage, string>
 ) {
 	if ('string' === typeof maybe) {
-		return new Error(maybe);
+		return () => maybe;
 	}
 
 	return maybe;
@@ -30,12 +44,12 @@ function maybe_Error(
 export function array_has_size(
 	maybe: unknown[]|NodeArray<Node>,
 	size: number,
-	message?: string|Error,
+	message?: AssertMessage,
 ): asserts maybe is ((unknown[]) & {length: typeof size}) {
 	assert.strictEqual(
 		maybe.length,
 		size,
-		maybe_Error(message),
+		maybe_Message(message),
 	);
 }
 
@@ -44,30 +58,30 @@ export function is_instanceof<T>(
 	of: {
 		[Symbol.hasInstance](instance: unknown): boolean,
 	},
-	message?: string|Error,
+	message?: AssertMessage,
 ): asserts maybe is T & typeof of {
 	assert.strictEqual(
 		maybe instanceof of,
 		true,
-		maybe_Error(message),
+		maybe_Message(message),
 	);
 }
 
 export function not_undefined<T = unknown>(
 	maybe: T|undefined,
-	message?: string|Error,
+	message?: AssertMessage,
 ): asserts maybe is Exclude<typeof maybe, undefined> {
 	assert.strictEqual(
 		undefined !== maybe,
 		true,
-		maybe_Error(message),
+		maybe_Message(message),
 	);
 }
 
 export function object_has_property(
 	maybe: unknown,
 	property: string,
-	message?: string|Error,
+	message?: AssertMessage,
 ): asserts maybe is (
 	& {[key: string]: unknown}
 	& {[key in typeof property]: unknown}
@@ -75,24 +89,24 @@ export function object_has_property(
 	assert.strictEqual(
 		typeof maybe,
 		'object',
-		maybe_Error(message),
+		maybe_Message(message),
 	);
 	assert.strictEqual(
 		maybe instanceof Array,
 		false,
-		maybe_Error(message),
+		maybe_Message(message),
 	);
 	assert.strictEqual(
 		property in (maybe as {[key: string]: unknown}),
 		true,
-		maybe_Error(message),
+		maybe_Message(message),
 	);
 }
 
 function resolve_partial(
 	actual: {[key: string]: unknown},
 	expecting: {[key: string]: unknown},
-	message?: string|Error,
+	message?: AssertMessage,
 ): {[key: string]: unknown} {
 	const partial_match: {[key: string]: unknown} = {};
 
@@ -119,7 +133,7 @@ function resolve_partial(
 export async function rejects_partial_match(
 	maybe: Promise<unknown>,
 	partial_error: {[key: string]: unknown},
-	message?: string|Error,
+	message?: AssertMessage,
 ): Promise<void> {
 	let failure: unknown = undefined;
 
@@ -130,7 +144,7 @@ export async function rejects_partial_match(
 	assert.strictEqual(
 		value_is_non_array_object(failure),
 		true,
-		maybe_Error(message),
+		maybe_Message(message),
 	);
 
 	const partial_match: {[key: string]: unknown} = resolve_partial(
@@ -142,6 +156,6 @@ export async function rejects_partial_match(
 	assert.deepStrictEqual(
 		partial_match,
 		partial_error,
-		maybe_Error(message),
+		maybe_Message(message),
 	);
 }
